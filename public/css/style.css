@@ -1,0 +1,234 @@
+
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    
+    background: linear-gradient(#081b29,#0ef,#081b29,#0ef)
+}
+.container{
+    flex:1;
+}
+
+.navbar{
+    height:5rem;
+    background-color: white;
+}
+.fa-compass{
+    color: red;
+    font-size: 2rem;
+}
+.nav-link{
+color: black !important;
+}
+/* footer */
+.f-info{
+    background-color: rgb(242, 239, 239) !important;
+}
+.f-info-links a{
+    text-decoration: none;
+    color: black;
+}
+.f-info-links a:hover{
+    text-decoration: underline;
+}
+.f-info-links,
+.f-info-socials,
+.f-info-brand{
+    width: 100%;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.f-info-socials i{
+    margin-right: 1rem;
+    font-size: 1.2rem;
+   
+}
+.f-info{
+    text-align: center;
+    height: 8rem;
+    background-color: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: space-evenly;
+}
+
+/* cards */
+.listing-card{
+    
+    border: none !important;
+    margin-bottom: 2rem;
+    border-radius: 1rem !important;
+    margin-right: 5px !important;
+    background-color: rgb(208, 252, 255) !important;
+}
+
+.row a{
+ text-decoration: none !important;
+}
+.card-img-top{
+    border-radius: 1rem !important;
+    height: 30vh !important;
+    width: 100%!important;
+    object-fit: cover !important;
+    
+}
+.card-body{
+    padding: 0 !important;
+    
+}
+.card-text p{
+    font-weight: 400;
+}
+.card-img-overlay{
+    opacity: 0;
+}
+.card-img-overlay:hover{
+    opacity: 0.2;
+    border-radius: 1rem !important;
+    background-color: #fff;
+}
+ /* show page */
+.show-img{
+    height: 30vh;
+}
+.show-btns{
+    display: flex;
+}
+/* .btn{
+    margin-right: 10px;
+} */
+.edit-btn{
+    background-color: red !important;
+}
+
+.aa{
+    color: black;
+}
+.username{
+    color: rgb(0, 0, 0) !important;
+    font-size: large !important;
+}
+.nav-search{
+    flex-grow: 1;
+    /* max-width: 1000px; */
+}
+.d-flex{
+    flex-grow: 1;
+    max-width: 800px;
+}
+.btn-outline-success{
+    
+    color: white !important;
+}
+
+.navbar,.footer{
+    background: linear-gradient(45deg,#081b29,#0ef); 
+}
+
+.nav-1{
+    color: whitesmoke !important;
+}
+.btn{
+    position: relative;
+    height: 45px;
+    max-width: 150px;
+    border: 2px solid #0ef !important;
+    background: transparent !important;
+    outline: none !important;
+    border-radius: 40px;
+    color: #fff !important;
+    font-size: 16px;
+    background: linear-gradient(#0ef,#0ef,#081b29) !important;
+    cursor: pointer !important;
+    overflow: hidden !important;
+  
+}
+.btn::before{
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0px;
+  
+    height: 300%;
+    background: linear-gradient(#081b29,#0ef,#081b29,#0ef) !important;
+    z-index: -1;
+  
+    transition: 0.5s;
+}
+
+
+.color-white{
+    color: white !important;
+}
+
+
+  .shiny-text {
+    font-size: 1rem;
+    color: #fff;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    background: linear-gradient(90deg, #070707, #878787, #161616,rgb(134, 134, 134));
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shine 3s linear infinite;
+}
+
+
+
+.small-image {
+    opacity: 0.6; /* Reduce opacity for inactive state */
+    transition: opacity 0.3s ease-in-out; /* Smooth transition on opacity change */
+  }
+  
+  .small-image:hover {
+    opacity: 1; /* Full opacity on hover */
+    cursor: pointer; /* Change cursor to pointer on hover */
+  }
+
+  .small-images {
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .small-image {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    transition: opacity 0.3s ease;
+  }
+
+  .small-image:hover {
+    opacity: 0.7;
+  }
+
+  .large-image {
+    width: 100%;
+    height: auto;
+    transition: opacity 0.3s ease;
+  }
+  
+  @media (max-width: 768px) {
+    .nav-search{
+      display: none !important;
+    }
+  }
+
+  @keyframes shine {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}

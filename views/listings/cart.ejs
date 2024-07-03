@@ -1,0 +1,24 @@
+<% layout("/layouts/boilerplate") %>
+<div class="row col-8 offset-3">
+    <%  for(let listing of currUser.cart){  %>
+       
+        <div class="card  col-5 ms-3 mt-3 mb-3">
+            <a href="/listings/<%= listing._id%>" class="aa">
+                    <img src="<%=listing.image[0] %>" class="card-img-top show-img mt-3" alt="...">
+                    <div class="card-body mt-3" >
+                      &#8377; <%=listing.price.toLocaleString("en-In") %><br>
+                      <b> <%=listing.BHK %></b>&nbsp; BHK<br>
+                      <%=listing.location %><br>
+                      <%=listing.state %><br>
+                    </p>
+                    </div>
+                </a>
+                <form method="POST" action="/cart/delete/<%= listing._id%>?_method=DELETE">
+                    <button class="btn btn-sm btn-dark mb-3">Delete</button>
+                </form>
+        </div>
+    
+      <%   }  %>
+    </div>
+   
+   

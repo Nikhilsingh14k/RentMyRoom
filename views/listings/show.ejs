@@ -1,0 +1,109 @@
+<% layout("/layouts/boilerplate") %>
+<div class="row col-8 offset-3">
+    <h3 class="color-white"><%=listing.title %></h3>
+</div>
+
+
+<div class="card listing-card col-6 offset-3">
+    <div class="row g-0">
+      <div class="col-md-12 ">
+        <div class="card-body">
+          <div class="large-image-container mb-3 ms-3 me-3 mt-3">
+            <img src="<%= listing.image[0] %>" class=" large-image img-fluid rounded-start card-img-top" alt="Active Listing Image">
+          </div>
+          <div class="small-images ms-3 row row-cols-6 g-2 ">
+            <% listing.image.forEach((imageUrl, index) => { %>
+              <div class="col">
+                <img src="<%= imageUrl %>" class="small-image" alt="Listing Image" data-index="<%= index %>">
+              </div>
+            <% }); %>
+          </div >
+          <h2 class="shiny-text ms-3 mt-3"> <b>  Owner:   <%= listing.owner.username %> </b> </h2>
+          <p class="card-text ms-3  mb-3 me-3">
+         <b> <%= listing.BHK %> BHK </b>  <br><br>
+         <b> Description:</b>  <%= listing.description %><br><br>
+         <b>  RENT : </b> &#8377; <%= listing.price.toLocaleString("en-IN") %>/month<br>
+            <b> Adress :</b><%= listing.location %><br>
+                <b> State :</b><%= listing.state %><br>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+   
+  
+    <div class="show-btns offset-3">
+        <form action="/listings/<%= listing._id %>/edit" >
+            <button class="btn btn-dark edit-btn">EDIT</button>
+        </form>
+        <form method="post" action="/listings/<%= listing._id %>?_method=DELETE" >
+            <button class="btn btn-dark ">DELETE </button>
+        </form> 
+       
+       
+      
+    </div>
+    
+     <div class="col-6 offset-3 mt-3">
+        <hr>
+        <% if(!currUser || !currUser._id.equals(listing.owner._id)){ %>  
+            <form action="/listings/<%= listing._id %>/cart" method="post" novalidate class="needs-validation offset-0 mb-3 mt-3">
+                
+                <button class="btn btn-dark" type="submit" >Add to Cart</button>
+                <br><br>
+              </form>
+            <% } %> 
+       
+        <% if(currUser ){ %>    
+            <hr/> 
+        <h4 >Leave a Review</h4>
+        <form action="/listings/<%= listing._id %>/reviews" method="post" novalidate class="needs-validation mb-3 mt-3">
+            <div class="mb-3">
+                <label for="rating" class="form-label">Rating:</label>
+                <input type="range" min="1" max="5" id="rating" name="review[rating]" class="form-control" required>
+                <div class="invalid-feedback">
+                    Please give a rating.
+                  </div>
+            </div>
+          
+            
+             <div class="mb-3">
+                <label for="comment" class="form-label">Comments :</label>
+                <textarea name="review[comment]" class="form-control" required></textarea>
+                <div class="invalid-feedback">
+                    Please give a comment.
+                  </div>
+             </div>
+            <button class="btn btn-dark" type="submit" >Submit Review</button>
+            <br><br>
+          </form>
+          <% } %>  
+          <hr/>
+         <h4 class="color-white">All Reviews</h4>
+         <div class="row mb-3 mt-3">
+            <% for(review of listing.reviews){ %>
+           <div class="card col-5 ms-3 mb-3">
+    <h6 class="card-title">@<%= review.author.username %></h6>
+    
+    <p class="card-text">
+        <% for(i=0; i<review.rating; i++) { %>
+            <i class="fa-solid fa-star fa-sm" style="color: #FFD43B;"></i>
+        <% } %>
+    </p>
+    
+    <p class="card-text"><%= review.comment %></p>
+    
+    <div class="card-footer">
+        <form method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
+            <button class="btn btn-sm btn-dark mb-3">Delete</button>
+        </form>
+    </div>
+</div>
+
+           <% }%>
+        </div>
+         
+     </div>   
+    </div>
+   
+   
