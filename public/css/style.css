@@ -232,3 +232,34 @@ color: black !important;
         background-position: -200% 0;
     }
 }
+@media (max-width: 1000px) {
+    .card{
+        
+        width: 80% !important;
+       margin-left: 10% !important;
+      
+    }
+    
+ 
+    .card-body{
+        width: 100% !important;
+       
+    }
+}
+@media (max-width: 786px) {
+    .card{
+        margin-left: 0px;
+        width: 100% !important;
+       margin-left: 0px !important;
+      
+    }
+    .row{
+        width: 100% !important ;
+        margin-left: 10px !important;
+    }
+ 
+    .card-body{
+        width: 100% !important;
+       
+    }
+}

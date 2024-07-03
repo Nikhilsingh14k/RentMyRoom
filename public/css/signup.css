@@ -283,3 +283,27 @@ pointer-events: none;
     transform: rotate(-11deg) skewY(-41deg);
     transition-delay: 1.2s;
 }
+@media (max-width: 768px) {
+    .info-text{
+        display: none !important; 
+
+    }
+    .wrapper{
+        width: 400px;
+    }
+    .form-box{
+        width: 100% !important;
+    }
+}
+@media (max-width: 400px) {
+    .info-text{
+        display: none !important; 
+
+    }
+    .wrapper{
+        width: 300px !important;
+    }
+    .form-box{
+        width: 100% !important;
+    }
+}

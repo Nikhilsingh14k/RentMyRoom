@@ -1,15 +1,20 @@
+if(process.env.NODE_ENV !="procuction"){
+    require('dotenv').config();
+}
+
 const express=require("express");
 const app=express();
 const mongoose=require("mongoose");
-const Listing=require("./models/listing.js");
-const Review=require("./models/review.js");
+
 const path=require("path");
-const MONGO_URL="mongodb://127.0.0.1:27017/RentMyRoom";
+// const MONGO_URL="mongodb://127.0.0.1:27017/RentMyRoom";
+// const dbUrl=process.env.ATLASDB_URL;
+
 const methodOverride=require("method-override");
 const ejsMate=require("ejs-mate");
 const wrapAsync=require("./utils/wrapAsync.js");
 const ExpressError=require("./utils/ExpressError.js");
-const {listingSchema,reviewSchema} =require("./schema.js");
+
 const { isLoggedIn } = require("./middleware.js");
 
 const listingsRouter=require("./routes/listing.js");
@@ -18,10 +23,37 @@ const userRouter=require("./routes/user.js");
 
 
 const session=require("express-session");
+const MongoStore=require("connect-mongo");
 const flash=require("connect-flash");
 const passport=require("passport");
 const LocalStrategy=require("passport-local");
 const User=require("./models/user.js");
+
+
+const { MongoClient } = require('mongodb');
+
+const uri = process.env.MONGODB_URI;
+
+// const client = new MongoClient(uri, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
+
+// async function connectToDatabase() {
+//   try {
+//     await client.connect();
+//     console.log('Connected to database');
+//     // Your database operations go here
+//   } catch (error) {
+//     console.error('Database connection error:', error);
+//   } finally {
+//     await client.close();
+//   }
+// }
+
+// connectToDatabase();
+
+
 
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
@@ -37,13 +69,26 @@ main()
 });
 
 async function main(){
-    await mongoose.connect(MONGO_URL);
+    await mongoose.connect(uri);
 }
 
 app.set("view engine","ejs");
 app.set("views" ,path.join(__dirname,"views"));
 
+const store=MongoStore.create({
+    mongoUrl:uri,
+    crypto:{
+        secret:"abcxyz1234",
+    },
+    touchAfter:24*3600,
+});
+
+store.on("error",()=>{
+    console.log("error in MONGO SESSION STORE",err);
+});
+
 const sessionOptions={
+    store,
     secret:"abcxyz1234",
     resave:false,
     saveUninitialized:true,
@@ -53,6 +98,8 @@ const sessionOptions={
         httpOnly:true,
     }
 };
+
+
 
 app.use(session(sessionOptions));
 app.use(flash());
@@ -92,7 +139,7 @@ app.delete("/cart/delete/:id", isLoggedIn, wrapAsync(async (req, res) => {
 }));
 
 
-app.all("*",( req , res,next)=>{
+app.all("*",( req , res , next)=>{
     next(new ExpressError(404,"Page not found"));
 });
 
