@@ -15,7 +15,7 @@
        
          <div class="mb-3">
             <label for="description" class="form-label">Description:</label>
-            <textarea name="listing[description]" class="form-control" required></textarea>
+            <textarea name="listing[description]" class="form-control" rows="4" required ></textarea>
             <div class="invalid-feedback">
                 Please fill the Description.
               </div>
@@ -52,7 +52,7 @@
         </div>
 
        <div class="mb-3" id="image-inputs">
-        <label for="image" class="form-label">Image URLs:</label>
+        <label for="image" class="form-label color-white">Image URLs:</label>
         <div class="input-group mb-3">
             <input type="url" name="listing[image][]" class="form-control" multiple>
             <button type="button" class="btn btn-outline-secondary" onclick="addImageInput()">+</button>
@@ -67,23 +67,3 @@
   </div>
 </div>
 
-
-<script>
-  function addImageInput() {
-      const imageInputs = document.getElementById('image-inputs');
-      const lastInput = imageInputs.querySelector('input[type="url"]:last-child');
-
-      const newInput = document.createElement('div');
-      newInput.classList.add('input-group', 'mb-3');
-      newInput.innerHTML = `
-          <input type="url" name="listing[image][]" class="form-control" multiple>
-          <button type="button" class="btn btn-outline-secondary" onclick="removeImageInput(this)">-</button>
-      `;
-
-      imageInputs.appendChild(newInput);
-  }
-
-  function removeImageInput(button) {
-      button.parentNode.remove();
-  }
-</script>

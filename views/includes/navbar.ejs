@@ -18,19 +18,18 @@
         </div>
       
         <div class="navbar-nav nav-2  ">
-          <a class="nav-link " href="/listings/new"> <h2 class="shiny-text">List your Room &nbsp;</h2> </a>
+          <a class="nav-link  me-2" href="/listings/new"> <h2 class="shiny-text">List your Room </h2> </a>
          
           <% if(!currUser){ %>
-         <b> <a href="/signup" class="nav-link shiny-text"><h2 class="shiny-text">Signup</h2> &nbsp; &nbsp;</a></b>
-         <b> <a href="/login" class="nav-link"><h2 class="shiny-text">Login</h2></a></b>
+         <b> <a href="/signup" class="nav-link me-2 shiny-text"><h2 class="shiny-text">Signup</h2>  </a></b>
+         <b> <a href="/login" class="nav-link me-2"><h2 class="shiny-text">Login</h2></a></b>
        <% } %><% if(currUser){ %> 
         <a class="nav-link me-2" href="/cart"> 
           <h2 class="shiny-text"> <%= currUser.cart.length%>
         <i class="fa-solid fa-cart-shopping fa-xl " >   </i> </h2>   </a>
         
-        <a href="" class="nav-link"><h2 class="shiny-text"><i class="fa-regular fa-user fa-lg"></i></h2></i>  </a>
-        <b>   <a href="" class="nav-link me-2 username"><h2 class="shiny-text"><i class="fa-regular fa-user fa-lg"></i><%= currUser.username %> &nbsp; &nbsp;</h2>  </a></b>
-        <b> <a href="/logout" class="nav-link"><h2 class="shiny-text">Logout</h2></a></b>
+        <b>   <a href="" class="nav-link me-2 username"><h2 class="shiny-text"><i class="fa-regular fa-user fa-lg"></i><%= currUser.username %> &nbsp; &nbsp;</h2> </a></b>
+        <b> <a href="/logout" class="nav-link me-2 "><h2 class="shiny-text">Logout</h2></a></b>
           <%}%>
         </div>
 
@@ -38,3 +37,6 @@
       
     </div>
   </nav>
+
+ 
+  

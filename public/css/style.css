@@ -137,7 +137,7 @@ color: black !important;
 .btn{
     position: relative;
     height: 45px;
-    max-width: 150px;
+    max-width: 200px;
     border: 2px solid #0ef !important;
     background: transparent !important;
     outline: none !important;
@@ -160,6 +160,9 @@ color: black !important;
     z-index: -1;
   
     transition: 0.5s;
+}
+.red{
+    background: linear-gradient(rgb(255, 0, 0),rgb(255, 25, 0),#081b29) !important;
 }
 
 .btn:hover{
@@ -296,6 +299,14 @@ color: black !important;
         width: 100% !important;
        
     }
+    .review-card{
+        width: 80% !important;
+    }
+    .show-down{
+        margin-left: 10px !important;
+        margin-right: 10px !important;
+        width: 100% !important;
+    }
 }
 @media (max-width: 575px) {
     .navbar-nav.nav-2 {
@@ -307,6 +318,7 @@ color: black !important;
       margin-left: 5 px;
     }
    
+
   }
   
  
@@ -314,5 +326,11 @@ color: black !important;
   @keyframes underline-animation {
     from { width: 0; }
     to { width: 100%; }
+  }
+
+  .book{
+    display: flex;
+     justify-content: flex-start; 
+     align-items: center;
   }
 

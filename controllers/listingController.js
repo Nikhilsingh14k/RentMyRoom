@@ -69,3 +69,16 @@ module.exports.addToCart=async(req,res)=>{
      req.flash("success","Added to Cart Succesfully !");
      res.redirect(`/listings/${id}`);
 };
+
+module.exports.removeFromCart=async (req, res) => {
+    const { id } = req.params; 
+    const currUser = await User.findById(res.locals.currUser._id);
+    if (!currUser) {
+        req.flash("error", "User not found.");
+        return res.redirect("/listings/${id}");
+    }
+    currUser.cart = currUser.cart.filter(itemId => itemId.toString() !== id);
+    await currUser.save();
+    req.flash("success", "Item removed from cart successfully!");
+    res.redirect(`/listings/${id}`);
+};

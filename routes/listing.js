@@ -38,4 +38,7 @@ router.post("/:id/cart",
     wrapAsync(listingController.addToCart )
 );
 
+
+router.delete("/cart/delete/:id", isLoggedIn, wrapAsync(listingController.removeFromCart));
+
 module.exports=router;

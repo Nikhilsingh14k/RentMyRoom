@@ -32,7 +32,7 @@
   </div>
    
   
-    <div class="show-btns offset-3">
+    <div class=" show-down show-btns offset-3">
         <form action="/listings/<%= listing._id %>/edit" >
             <button class="btn btn-dark edit-btn">EDIT</button>
         </form>
@@ -44,18 +44,31 @@
       
     </div>
     
-     <div class="col-6 offset-3 mt-3">
-        <hr>
+     
+        
         <% if(!currUser || !currUser._id.equals(listing.owner._id)){ %>  
+          <div class= "book  show-down col-6 offset-3 mt-3">
+            <hr>
+          <% if (currUser && currUser.cart.includes(listing._id.toString())) { %>
+            <form method="POST" action="cart/delete/<%= listing._id %>?_method=DELETE">
+                <button class="btn btn-dark" type="submit">Remove from Cart</button>
+            </form>
+        <% } else { %>
             <form action="/listings/<%= listing._id %>/cart" method="post" novalidate class="needs-validation offset-0 mb-3 mt-3">
-                
-                <button class="btn btn-dark" type="submit" >Add to Cart</button>
-                <br><br>
-              </form>
+                <button class="btn btn-dark" type="submit">Add to Cart</button>
+            </form>
+        <% } %>
+        <form action="" novalidate >
+          <button class="btn btn-dark red" type="submit">BOOK NOW</button>
+      </form>
+              
+    </div>    
             <% } %> 
-       
+         
         <% if(currUser ){ %>    
-            <hr/> 
+            
+        <div class="show-down col-6 offset-3 mt-3">
+          <hr/> 
         <h4 >Leave a Review</h4>
         <form action="/listings/<%= listing._id %>/reviews" method="post" novalidate class="needs-validation mb-3 mt-3">
             <div class="mb-3">
@@ -69,7 +82,7 @@
             
              <div class="mb-3">
                 <label for="comment" class="form-label">Comments :</label>
-                <textarea name="review[comment]" class="form-control" required></textarea>
+                <textarea name="review[comment]" rows="4"  class="form-control" required></textarea>
                 <div class="invalid-feedback">
                     Please give a comment.
                   </div>
@@ -82,7 +95,7 @@
          <h4 class="color-white">All Reviews</h4>
          <div class="row mb-3 mt-3">
             <% for(review of listing.reviews){ %>
-           <div class="card col-5 ms-3 mb-3">
+           <div class="card review-card col-5 ms-3 mb-3">
     <h6 class="card-title">@<%= review.author.username %></h6>
     
     <p class="card-text">
@@ -92,18 +105,23 @@
     </p>
     
     <p class="card-text"><%= review.comment %></p>
+
+    <% if(currUser && currUser._id.equals(review.author._id) ){ %>
+      <div class="card-footer">
+          <form method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
+              <button class="btn btn-sm btn-dark mb-3">Delete</button>
+          </form>
+      </div>
+      <% } %>
+        
     
-    <div class="card-footer">
-        <form method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
-            <button class="btn btn-sm btn-dark mb-3">Delete</button>
-        </form>
-    </div>
+  
 </div>
 
            <% }%>
         </div>
-         
-     </div>   
+      </div>  
+    
     </div>
    
    

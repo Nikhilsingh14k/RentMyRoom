@@ -1,7 +1,8 @@
 if(process.env.NODE_ENV !="procuction"){
     require('dotenv').config();
 }
-
+const Listing=require("./models/listing.js");
+const Review=require("./models/review.js");
 const express=require("express");
 const app=express();
 const mongoose=require("mongoose");
@@ -14,7 +15,7 @@ const methodOverride=require("method-override");
 const ejsMate=require("ejs-mate");
 const wrapAsync=require("./utils/wrapAsync.js");
 const ExpressError=require("./utils/ExpressError.js");
-
+const {listingSchema,reviewSchema} =require("./schema.js");
 const { isLoggedIn } = require("./middleware.js");
 
 const listingsRouter=require("./routes/listing.js");
@@ -33,26 +34,6 @@ const User=require("./models/user.js");
 const { MongoClient } = require('mongodb');
 
 const uri = process.env.MONGODB_URI;
-
-// const client = new MongoClient(uri, {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// });
-
-// async function connectToDatabase() {
-//   try {
-//     await client.connect();
-//     console.log('Connected to database');
-//     // Your database operations go here
-//   } catch (error) {
-//     console.error('Database connection error:', error);
-//   } finally {
-//     await client.close();
-//   }
-// }
-
-// connectToDatabase();
-
 
 
 app.use(express.urlencoded({ extended: true }));
@@ -117,6 +98,7 @@ app.use((req,res,next)=>{
     res.locals.currUser=req.user;
     next();
 })
+
 app.use("",userRouter);
 app.use("/listings",listingsRouter);
 app.use("/listings/:id/reviews",reviewsRouter);
