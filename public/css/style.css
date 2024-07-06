@@ -195,13 +195,13 @@ color: black !important;
 
 
 .small-image {
-    opacity: 0.6; /* Reduce opacity for inactive state */
-    transition: opacity 0.3s ease-in-out; /* Smooth transition on opacity change */
+    opacity: 0.6;
+    transition: opacity 0.3s ease-in-out; 
   }
   
   .small-image:hover {
-    opacity: 1; /* Full opacity on hover */
-    cursor: pointer; /* Change cursor to pointer on hover */
+    opacity: 1;
+    cursor: pointer;
   }
 
   .small-images {
@@ -227,13 +227,17 @@ color: black !important;
     height: auto;
     transition: opacity 0.3s ease;
   }
-
+.book{
+    display: flex;
+     justify-content: flex-start; 
+     align-items: center;
+  }
   .count{
     margin-right: 0px;
   }
 
   .card:hover {
-    box-shadow: 5px 5px 10px cyan; /* Adjust the shadow size and color as needed */
+    box-shadow: 5px 5px 10px cyan; 
   }
 
   .nav-link {
@@ -247,11 +251,11 @@ color: black !important;
     content: '';
     position: absolute;
     left: 0;
-    bottom: -3px; /* Adjust as needed to control the underline position */
+    bottom: -3px;
     width: 100%;
-    height: 3px; /* Adjust thickness of underline */
-    background-color: cyan; /* Color of the underline */
-    animation: underline-animation 0.3s forwards; /* Animation duration and effect */
+    height: 3px; 
+    background-color: cyan; 
+    animation: underline-animation 0.3s forwards; 
   }
   
   @media (max-width: 768px) {
@@ -300,7 +304,7 @@ color: black !important;
        
     }
     .review-card{
-        width: 80% !important;
+        width: 100% !important;
     }
     .show-down{
         margin-left: 10px !important;
@@ -310,7 +314,7 @@ color: black !important;
 }
 @media (max-width: 575px) {
     .navbar-nav.nav-2 {
-      backdrop-filter: blur(10px); /* Adjust the blur intensity as needed */
+      backdrop-filter: blur(10px); 
       background-color: rgba(255, 255, 255, 0.5); 
       width: 200px;
       height: 100vh;
@@ -328,9 +332,5 @@ color: black !important;
     to { width: 100%; }
   }
 
-  .book{
-    display: flex;
-     justify-content: flex-start; 
-     align-items: center;
-  }
+  
 
