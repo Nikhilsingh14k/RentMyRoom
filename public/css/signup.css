@@ -7,13 +7,13 @@
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1000; /* Ensures navbar is on top of other content */
+    z-index: 1000; 
     
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .wrapper {
-    margin-top: 70px; /* Adjust this value based on your navbar height */
+    margin-top: 70px;
 }
 
 body{
